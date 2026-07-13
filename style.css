@@ -1798,7 +1798,7 @@ img {
 .drink-slides-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.414; /* A4 vertical proportion */
+  aspect-ratio: 3 / 2; /* Match landscape menu proportion (e.g. 1.5 aspect ratio) */
   background-color: #0d0d0d;
 }
 
@@ -1887,32 +1887,38 @@ img {
   transform: scale(1.3);
 }
 
+.course-intro-img-wrap {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16/9;
+  margin: 0 auto 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.course-intro-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.course-intro-card:hover .course-intro-img {
+  transform: scale(1.03);
+}
+
 /* Course Intro Card */
 .course-intro-card {
-  background-color: var(--black-mid);
-  border: 1px solid rgba(181, 22, 30, 0.15);
-  padding: 60px 40px;
+  padding: 40px 0;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.course-intro-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--red), transparent);
 }
 
 .course-title-main {
   font-family: 'Noto Serif JP', serif;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(0.9rem, 4.2vw, 2.2rem);
   font-weight: 600;
   color: var(--text-main);
   margin-bottom: 24px;
@@ -1960,7 +1966,7 @@ img {
     display: none;
   }
   .course-intro-card {
-    padding: 40px 20px;
+    padding: 30px 0;
   }
   .btn-tabelog-course {
     font-size: clamp(0.72rem, 3vw, 0.85rem);
@@ -2132,6 +2138,26 @@ img {
   box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
+.menu-presentation-img-wrap.blend {
+  position: relative;
+  aspect-ratio: 1/1;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.menu-presentation-img-wrap.blend::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 35px 20px var(--black);
+  pointer-events: none;
+  z-index: 2;
+}
+
 .menu-pres-img {
   width: 100%;
   height: 100%;
@@ -2139,8 +2165,23 @@ img {
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.menu-pres-img-blend {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+  filter: brightness(0.9) contrast(1.05);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 .menu-presentation-grid:hover .menu-pres-img {
   transform: scale(1.04);
+}
+
+.menu-presentation-grid:hover .menu-pres-img-blend {
+  transform: scale(1.05);
 }
 
 .menu-presentation-content {
@@ -2156,13 +2197,13 @@ img {
   margin-bottom: 30px;
 }
 
-#index-course {
+#index-about {
   padding: 120px 0;
   background: var(--black);
   position: relative;
 }
 
-#index-course::before {
+#index-about::before {
   content: '';
   position: absolute;
   top: 0;
@@ -2189,7 +2230,45 @@ img {
     grid-row: auto;
   }
   
-  #index-course {
+  #index-about {
     padding: 80px 0;
+  }
+}
+
+/* Intro Text Blocks (Tapas, Drinks, Desserts, Seats) */
+.tapas-intro-text,
+.drink-intro-text,
+.dessert-intro-text,
+.seat-intro-text {
+  text-align: center;
+  max-width: 680px;
+  margin: 40px auto 0;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--cream-dim);
+}
+
+.index-about-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--cream-dim);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .tapas-intro-text,
+  .drink-intro-text,
+  .dessert-intro-text,
+  .seat-intro-text {
+    text-align: left;
+    margin: 30px auto 0;
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+  
+  .index-about-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
   }
 }

@@ -24,7 +24,7 @@
         <img src="img/ロゴ.jpg" alt="Logo" class="loader-logo" />
         <div class="loader-circle"></div>
       </div>
-      <p class="loader-text">Bistro Sakaba GABU2</p>
+      <p class="loader-text">Bistro Sakaba GABU²</p>
     </div>
   </div>
 
@@ -181,7 +181,7 @@
         </div>
         <div class="menu-presentation-content reveal-right">
           <p class="menu-pres-text jp-serif">
-            看板メニューのにんにく爆盛りGABU2ハラミステーキをはじめ、新鮮な肉刺し、ワインが進む様々なタパス料理をご用意しております。
+            新鮮な肉にこだわりがあるからこそ、全ての人に味わっていただきたい。そんな思いを込めて、当店の名物は全て肉料理です。「今日は思いっきりお肉を食べたい！」そんな時にぴったりなお店。少しずつ色々なお料理を楽しめる、バルならではの季節を感じられるタパスメニューも豊富にご用意しております。
           </p>
           <div class="menu-details-cta">
             <a href="menu.html" class="btn-primary" id="menu-details-btn">メニューを詳しくみる</a>
@@ -195,32 +195,32 @@
   <!-- ===============================================
        COURSE
   =============================================== -->
-  <section id="index-course" aria-labelledby="index-course-heading">
+  <section id="index-about" aria-labelledby="index-about-heading">
     <div class="container">
 
-      <!-- Course Header -->
+      <!-- About Header -->
       <div class="menu-header reveal">
         <div class="menu-header-left">
-          <p class="section-label" aria-hidden="true">Our Course</p>
-          <h2 id="index-course-heading" class="menu-header-title en-heading">Course</h2>
-          <p class="menu-header-sub jp-serif">ご宴会や女子会、大切な記念日に</p>
+          <p class="section-label" aria-hidden="true">Our Identity</p>
+          <h2 id="index-about-heading" class="menu-header-title en-heading">Fresh &amp;<br />Casual</h2>
+          <p class="menu-header-sub jp-serif">新鮮なくらや直送肉とこだわりビストロ料理</p>
         </div>
       </div>
 
       <div class="menu-presentation-grid reverse">
         <!-- Image first in HTML to display on top in mobile -->
         <div class="menu-presentation-img-col reveal-right">
-          <div class="menu-presentation-img-wrap">
-            <img src="img/熟成リブロースグリル.jpg" alt="熟成リブロースグリル" class="menu-pres-img" />
+          <div class="menu-presentation-img-wrap blend">
+            <img src="img/①.jpg" alt="新鮮なくらや直送肉とこだわりビストロ料理" class="menu-pres-img-blend" />
           </div>
         </div>
         <div class="menu-presentation-content reveal-left">
-          <p class="menu-pres-text jp-serif">
-            名物のハラミステーキや熟成肉、新鮮な肉刺しなどをふんだんに盛り込んだ贅沢なパーティープラン。充実の飲み放題付きプランもございます。
+          <p class="index-about-text jp-serif">
+            新鮮なくらや直送肉とこだわりビストロ料理を気取らず日常的に楽しめる空間
           </p>
-          <div class="menu-details-cta">
-            <a href="menu.html#course" class="btn-primary" id="course-details-btn">コースを詳しくみる</a>
-          </div>
+          <p class="menu-pres-text en-sub" style="font-size: 0.9rem; line-height: 1.6; color: var(--cream-dim); margin-bottom: 0;">
+            A casual place where you can enjoy fresh meat directly delivered from Kuraya and special bistro cuisine on a daily basis.
+          </p>
         </div>
       </div>
 
@@ -250,7 +250,7 @@
         </div>
         <div class="menu-presentation-content reveal-right">
           <p class="menu-pres-text jp-serif">
-            木の温もりあふれる落ち着いたテーブル席や、調理風景を目の前で楽しめるライブ感満載のカウンター席など、様々なシーンに合わせてご利用いただけます。
+            地下へとつづく階段を降りると、温もりのある店内の明かりが広がります。扉を開けると、ずらりと並んだワインがお出迎え。見て楽しみながら、お気に入りの1本を見つけてください。<br><br>おひとり様でも安心して過ごせるカウンター席や、仲間とワイワイ楽しめるテーブル席をご用意しております。
           </p>
           <div class="menu-details-cta">
             <a href="seat.html" class="btn-primary" id="seat-details-btn">お席を詳しくみる</a>
@@ -416,9 +416,10 @@
       const loader = document.getElementById('loader');
       const loaderContent = document.querySelector('.loader-content');
 
-      const referrer = document.referrer;
       const hasSkipParam = window.location.search.includes('skip_animation=true');
-      const skipAnimation = hasSkipParam || referrer.includes('menu.html') || referrer.includes('seat.html');
+      const hasVisited = sessionStorage.getItem('visited_gabu2');
+      // クエリパラメータがあるか、すでに同一セッションで訪問済みの場合はスキップ
+      const skipAnimation = hasSkipParam || hasVisited;
 
       if (skipAnimation) {
         // アニメーションをスキップして即表示
@@ -437,6 +438,9 @@
           el.classList.add('visible');
         });
       } else {
+        // セッション内初回訪問フラグを設定
+        sessionStorage.setItem('visited_gabu2', 'true');
+
         // 通常のオープニングアニメーション
         // 2.2秒後にロゴとテキストをフェードアウト
         setTimeout(() => {
